@@ -6,6 +6,7 @@
 package Vista;
 
 import controlador.EventoVentanaInicial;
+import controlador.GestionDato;
 //import controlador.GestionDato;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -23,11 +24,11 @@ public class VentanaInicial extends JFrame {
     private JMenu menu;
     private JMenu menu2;
     private List<JMenuItem> menuItemList;
-  //  private GestionDato gD;
+    private GestionDato gD;
 
-    public VentanaInicial( String title) throws HeadlessException {
+    public VentanaInicial( GestionDato gD, String title) throws HeadlessException {
         super(title);
-       // this.gD = gD;
+        this.gD = gD;
         this.setSize(1280, 800);
         this.setDefaultCloseOperation(3);
         this.iniciaComponentes();
@@ -55,6 +56,7 @@ public class VentanaInicial extends JFrame {
         this.setJMenuBar(barraMenu);
         this.barraMenu.add(this.menu);
         this.barraMenu.add(this.menu2);
+        
         this.menu.add(this.menuItemList.get(0));
         this.menu.add(this.menuItemList.get(1));
         this.menu2.add(this.menuItemList.get(2));
@@ -92,6 +94,22 @@ public class VentanaInicial extends JFrame {
 
     public void setMenuItemList(List<JMenuItem> menuItemList) {
         this.menuItemList = menuItemList;
+    }
+
+    public JMenu getMenu2() {
+        return menu2;
+    }
+
+    public void setMenu2(JMenu menu2) {
+        this.menu2 = menu2;
+    }
+
+    public GestionDato getgD() {
+        return gD;
+    }
+
+    public void setgD(GestionDato gD) {
+        this.gD = gD;
     }
 
     

@@ -5,6 +5,10 @@
  */
 package controlador;
 
+import Vista.VenantaCrearArchivo;
+import Vista.VenantaCrearDirectorio;
+import Vista.VentanaEditarArchivo;
+import Vista.VentanaEditarDirectorio;
 import Vista.VentanaInicial;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +34,33 @@ public class EventoVentanaInicial implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(0)))
+        {
+            VenantaCrearArchivo vCA = new VenantaCrearArchivo(this.ventanaInicial.getgD());
+            vCA.setVisible(true);
+            this.ventanaInicial.getEscritorio().add(vCA);
+        }
         
+        if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(1)))
+        {
+            VentanaEditarArchivo vEA = new VentanaEditarArchivo(this.ventanaInicial.getgD());
+            vEA.setVisible(true);
+            this.ventanaInicial.getEscritorio().add(vEA);
+        }
+        
+        if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(2)))
+        {
+            VenantaCrearDirectorio vCD = new VenantaCrearDirectorio(this.ventanaInicial.getgD());
+            vCD.setVisible(true);
+            this.ventanaInicial.getEscritorio().add(vCD);
+        }
+        
+        if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(3)))
+        {
+            VentanaEditarDirectorio vED = new  VentanaEditarDirectorio(this.ventanaInicial.getgD());
+            vED.setVisible(true);
+            this.ventanaInicial.getEscritorio().add(vED);
+        }
     }
 }
