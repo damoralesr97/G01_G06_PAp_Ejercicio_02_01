@@ -16,6 +16,8 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VentanaInicial vI = new VentanaInicial("Examen Parcial 01");
+        vI.setVisible(true);
     }
     
 }
