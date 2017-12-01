@@ -37,28 +37,28 @@ public class EventoVentanaInicial implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(0)))
         {
-            VenantaCrearArchivo vCA = new VenantaCrearArchivo(this.ventanaInicial.getgD());
+            VenantaCrearArchivo vCA = new VenantaCrearArchivo(this.ventanaInicial.getgD(), this.ventanaInicial.getArbolD());
             vCA.setVisible(true);
             this.ventanaInicial.getEscritorio().add(vCA);
         }
         
         if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(1)))
         {
-            VentanaEditarArchivo vEA = new VentanaEditarArchivo(this.ventanaInicial.getgD());
+            VentanaEditarArchivo vEA = new VentanaEditarArchivo(this.ventanaInicial.getgD(), this.ventanaInicial.getArbolD());
             vEA.setVisible(true);
             this.ventanaInicial.getEscritorio().add(vEA);
         }
         
         if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(2)))
         {
-            VenantaCrearDirectorio vCD = new VenantaCrearDirectorio(this.ventanaInicial.getgD());
+            VenantaCrearDirectorio vCD = new VenantaCrearDirectorio(this.ventanaInicial.getgD(),this.ventanaInicial.getArbolD());
             vCD.setVisible(true);
             this.ventanaInicial.getEscritorio().add(vCD);
         }
         
         if(e.getSource().equals(this.ventanaInicial.getMenuItemList().get(3)))
         {
-            VentanaEditarDirectorio vED = new  VentanaEditarDirectorio(this.ventanaInicial.getgD());
+            VentanaEditarDirectorio vED = new  VentanaEditarDirectorio(this.ventanaInicial.getgD(), this.ventanaInicial.getArbolD());
             vED.setVisible(true);
             this.ventanaInicial.getEscritorio().add(vED);
         }

@@ -5,7 +5,10 @@
  */
 package Vista;
 
+import controlador.EventoArbol;
 import controlador.GestionDato;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -18,8 +21,13 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       GestionDato gD = new GestionDato();
-       VentanaInicial vI = new VentanaInicial(gD, "Examen Parcial 01");
+        DefaultMutableTreeNode padre=new DefaultMutableTreeNode();
+        DefaultTreeModel arbolD=new DefaultTreeModel(padre);
+        GestionDato gD = new GestionDato();
+        EventoArbol p = new EventoArbol();
+        String ruta="C://";
+        arbolD=p.CargaEstructuraDirectorios(arbolD, padre, ruta);
+        VentanaInicial vI = new VentanaInicial(gD, "Examen Parcial 01",arbolD);
         vI.setVisible(true);
     }
     

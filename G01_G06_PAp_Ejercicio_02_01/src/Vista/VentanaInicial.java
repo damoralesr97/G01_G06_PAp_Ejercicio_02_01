@@ -5,31 +5,42 @@
  */
 package Vista;
 
+import controlador.EventoArbol;
 import controlador.EventoVentanaInicial;
 import controlador.GestionDato;
 //import controlador.GestionDato;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 
-public class VentanaInicial extends JFrame {
+
+public class VentanaInicial extends javax.swing.JFrame {
     private JDesktopPane escritorio;
     private JMenuBar barraMenu;
     private JMenu menu;
     private JMenu menu2;
     private List<JMenuItem> menuItemList;
     private GestionDato gD;
+     private DefaultTreeModel arbolD=null;
+  
 
-    public VentanaInicial( GestionDato gD, String title) throws HeadlessException {
+    public VentanaInicial( GestionDato gD, String title,DefaultTreeModel arbolD)  {
         super(title);
         this.gD = gD;
-        this.setSize(1280, 800);
+         this.arbolD= arbolD;
+        this.setSize(800, 600);
         this.setDefaultCloseOperation(3);
         this.iniciaComponentes();
     }
@@ -61,9 +72,12 @@ public class VentanaInicial extends JFrame {
         this.menu.add(this.menuItemList.get(1));
         this.menu2.add(this.menuItemList.get(2));
         this.menu2.add(this.menuItemList.get(3));
-       
+        
+      
+		
+		
     }
-
+    
     public JDesktopPane getEscritorio() {
         return escritorio;
     }
@@ -112,5 +126,14 @@ public class VentanaInicial extends JFrame {
         this.gD = gD;
     }
 
+    public DefaultTreeModel getArbolD() {
+        return arbolD;
+    }
+
+    public void setArbolD(DefaultTreeModel arbolD) {
+        this.arbolD = arbolD;
+    }
+
+    
     
 }

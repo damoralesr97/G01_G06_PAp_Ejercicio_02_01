@@ -5,10 +5,12 @@
  */
 package Vista;
 
+import controlador.EventoArbol;
 import controlador.GestionDato;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -17,24 +19,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 /**
  *
  * @author paulo
  */
-public class VenantaCrearDirectorio extends JInternalFrame
+public class VenantaCrearDirectorio extends JInternalFrame implements javax.swing.event.TreeSelectionListener
 {
-      private List<JLabel> etiList;
+    private List<JLabel> etiList;
     private List<JTextField> txtList;
     private JButton boton;
     private JButton boton2;
     private JPanel panelPrincipal;
     private JScrollPane scroll;
     private GestionDato gD;
+    private DefaultTreeModel arbolD=null;
+    private javax.swing.JTree arbol=new javax.swing.JTree();
+    private String ruta="C:";
+    private JLabel rutaActual=new JLabel();
     
-      public VenantaCrearDirectorio(GestionDato gD) {
+    
+    
+      public VenantaCrearDirectorio(GestionDato gD,DefaultTreeModel arbolD) {
         super("Crear Directorio",true,true,true,true);
         this.gD=gD;
+        this.arbolD= arbolD;
         this.iniciaComponentes();
         this.setSize(500, 500);
     }
@@ -66,7 +80,39 @@ public class VenantaCrearDirectorio extends JInternalFrame
 
         this.add(this.panelPrincipal);
         
+        setSize(800,700);
+        javax.swing.JPanel p=new javax.swing.JPanel();
+        setLayout(new java.awt.FlowLayout());
+
+        this.arbolD=arbolD;
+        arbol=new javax.swing.JTree(arbolD);
+
+        arbol.addTreeSelectionListener(this);
+        JScrollPane sc=new JScrollPane();
+        sc.setBounds(10, 20,300, 150);
+        sc.setViewportView(arbol);
+        add(sc);
+        add(rutaActual);
+        setVisible(true);
+        
      }
+       @Override
+    public void valueChanged(TreeSelectionEvent tse) {
+       ruta="C:";
+		TreePath arbolT= tse.getPath();
+		Object[] nodos=arbolT.getPath();
+		for (int i = 0; i < nodos.length; i++) { //for que devuelve la ruta de la carpeta seleccionada
+			Object nodo=nodos[i];
+			ruta+=nodo.toString() + "\\";
+			System.out.println(ruta);
+		}
+		DefaultMutableTreeNode padre=(DefaultMutableTreeNode)arbol.getLastSelectedPathComponent();
+		File f= new File(ruta);
+		EventoArbol p =new EventoArbol();
+		arbolD=p.CargaEstructuraDirectorios(arbolD, f, padre);
+		rutaActual.setText(ruta);
+    }
+
 
     public List<JLabel> getEtiList() {
         return etiList;
@@ -123,5 +169,38 @@ public class VenantaCrearDirectorio extends JInternalFrame
     public void setgD(GestionDato gD) {
         this.gD = gD;
     }
+
+    public DefaultTreeModel getArbolD() {
+        return arbolD;
+    }
+
+    public void setArbolD(DefaultTreeModel arbolD) {
+        this.arbolD = arbolD;
+    }
+
+    public JTree getArbol() {
+        return arbol;
+    }
+
+    public void setArbol(JTree arbol) {
+        this.arbol = arbol;
+    }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+    public JLabel getRutaActual() {
+        return rutaActual;
+    }
+
+    public void setRutaActual(JLabel rutaActual) {
+        this.rutaActual = rutaActual;
+    }
+    
       
 }
